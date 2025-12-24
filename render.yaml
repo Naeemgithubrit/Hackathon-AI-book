@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: rag-chatbot-backend
+    runtime: python
+    rootDir: backend
+    plan: starter
+    envVars:
+      - key: QDRANT_API_KEY
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: COHERE_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: NEON_DATABASE_URL
+        sync: false
+      - key: COLLECTION_NAME
+        value: physical-robotics-ai-book
+      - key: PYTHON_VERSION
+        value: 3.11
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
